@@ -4,8 +4,13 @@
 
 * Run ```heroku create```
 * Run ```heroku addons:create heroku-postgresql:hobby-dev```
-* Run ```heroku config``` to see the env variable just added
+* Run ```heroku config``` to see the environment variable just added
 * Resource: https://devcenter.heroku.com/articles/heroku-postgresql
+* This line in the config.json is how the database connections in production/heroku:
+
+```"production": {```
+    ```"use_env_variable": "DATABASE_URL"```
+```}```
 
 <h2>Other</h2>
 
