@@ -5,36 +5,22 @@ module.exports = function (sequelize, DataTypes) {
 	var User = sequelize.define('User', {
 		name: {
 			type: DataTypes.STRING,
+			allowNull: false
 		},
 		username: {
 			type: DataTypes.STRING,
 			unique: true
 		},
-		googleID: {
-			type: DataTypes.STRING
-		},
-		facebookID: {
-			type: DataTypes.STRING
-		},
-		token: {
-			type: DataTypes.STRING
-		},
-		uuid: {
-			type: DataTypes.UUID,
-    		defaultValue: DataTypes.UUIDV1,
-		},
 		salt: {
 			type: DataTypes.STRING
 		},
 		password_hash: {
-			type: DataTypes.STRING
-		},
-		createdOn: {
-			type: DataTypes.STRING
+			type: DataTypes.STRING,
+			allowNull: false
 		},
 		password: {
 			type: DataTypes.VIRTUAL,
-			// allowNull: false,
+			allowNull: false,
 			validate: {
 				len: [7, 100]
 			},
@@ -50,7 +36,7 @@ module.exports = function (sequelize, DataTypes) {
 	}, {
 		classMethods: {
       		associate: function(models) {
-       		 // associations can be defined here
+       			User.hasOne(models.Profile)
       		},
 		},
 		instanceMethods: {

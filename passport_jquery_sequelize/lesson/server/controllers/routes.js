@@ -70,9 +70,21 @@ module.exports = (app, passport) => {
 		if(req.user){
 			if(req.user.id == req.params.id){
 				models.User.findOne({where: {id: req.params.id}}).then((user) => {
-					res.set('Content-Type', 'text/html');
-					res.send(html_creator(user));	
-				})
+					user.getProfile().then((profile) => {
+						var profileObj = {};
+						profileObj.id = profile.id;
+						profileObj.fav_veggie = profile.fav_veggie;
+						profileObj.fav_fruit = profile.fav_fruit;
+
+						var data = {
+							user: user,
+							profile: profileObj
+						}
+
+						res.set('Content-Type', 'text/html');
+						res.send(html_creator(data));	
+					});
+				});
 			} else {
 				res.redirect('/');
 			}
@@ -85,6 +97,16 @@ module.exports = (app, passport) => {
 	  req.session.destroy(function(out){
 	    res.json(out)
 	  });
+	});
+
+	app.post('/api/create-profile', function(req, res){
+		models.Profile.create({
+			fav_veggie: req.body.fav_veggie,
+			fav_fruit: req.body.fav_fruit,
+			UserId: req.body.UserId
+		}).then((profile) => {
+			res.json(profile)
+		});
 	});
 
 }
