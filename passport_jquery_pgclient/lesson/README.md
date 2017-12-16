@@ -27,5 +27,5 @@ Login Authentication boilerplate using:
 
 * You can connect to this database through the credentials they give you
 * You can see a breakdown of the credentials if you go to your app's page on heroku and find the database option
-![postgres image one](https://github.com/nycda-wdi-jared/pg_express_crud_guestbook/blob/master/github_images/first.png?raw=true "Postgres Example")
-![postgres image two](https://github.com/nycda-wdi-jared/pg_express_crud_guestbook/blob/master/github_images/second.png?raw=true "Postgres Example")
+![postgres image one](https://github.com/nycda-wdi-jared/postgres_sequelize/blob/master/pg_sequelize_boilerplate/github_images/first.png?raw=true "Postgres Example")
+![postgres image two](https://github.com/nycda-wdi-jared/postgres_sequelize/blob/master/pg_sequelize_boilerplate/github_images/second.png?raw=true "Postgres Example")
