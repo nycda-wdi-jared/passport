@@ -137,13 +137,29 @@ router.get('/profile/:id', (req,res) => {
 		if(req.user.id == req.params.id){
 			var userInfo = [];
 			var query = `SELECT name FROM users WHERE id=${req.params.id}`;
+			var profileArr = [];
 			pgClient.query(query, (error,queryRes) => {
+				var userArr = [];
 				if(error){
 					res.json({error: error})
 				} else {
-					res.set('Content-Type', 'text/html');
-					res.send(html_creator(queryRes.rows[0]));
+					userArr.push(queryRes.rows[0])
 				}
+				var pokemonQuery = `SELECT * FROM pokemon`
+				pgClient.query(pokemonQuery, (pokemonError, pokemonRes) => {
+					var pokemonArr = [];
+					if(pokemonError){
+						res.json({error: pokemonError})
+					} else {
+						pokemonArr.push(pokemonRes.rows)
+						var data = {
+							user: userArr[0],
+							pokemon: pokemonArr[0]
+						}
+						res.set('Content-Type', 'text/html');
+						res.send(html_creator(data));
+					}
+				})
 			});
 		} else {
 			res.redirect('/');
