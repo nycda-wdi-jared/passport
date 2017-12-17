@@ -75,15 +75,18 @@ module.exports = (app, passport) => {
 						profileObj.id = profile.id;
 						profileObj.fav_veggie = profile.fav_veggie;
 						profileObj.fav_fruit = profile.fav_fruit;
-
+					// i have given you the query for the posts here
+					// models.Post.findAll({where:{user_id: req.params.id}}).then((posts) => {
+						/* store the posts in a separate array here */ 
 						var data = {
 							user: user,
-							profile: profileObj
+							profile: profileObj,
+							/* add posts to this object */
 						}
-
 						res.set('Content-Type', 'text/html');
 						res.send(html_creator(data));	
-					})
+					// })
+				  })
 				});
 			} else {
 				res.redirect('/');
@@ -110,5 +113,9 @@ module.exports = (app, passport) => {
 			res.json(err)
 		})
 	});
+
+	/*
+		create a post method here to manually create a few posts for the user
+	*/
 
 }

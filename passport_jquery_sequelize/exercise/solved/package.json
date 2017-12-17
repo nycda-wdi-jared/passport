@@ -1,0 +1,28 @@
+{
+  "name": "passport_jquery_sequelize_exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.15.2",
+    "connect-session-sequelize": "^4.1.0",
+    "cookie-parser": "^1.4.3",
+    "crypto-js": "^3.1.7",
+    "cryptojs": "^2.5.3",
+    "express": "^4.14.0",
+    "express-session": "^1.15.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pg": "^6.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.4"
+  }
+}

@@ -75,15 +75,20 @@ module.exports = (app, passport) => {
 						profileObj.id = profile.id;
 						profileObj.fav_veggie = profile.fav_veggie;
 						profileObj.fav_fruit = profile.fav_fruit;
-
+					models.Post.findAll({where:{user_id: req.params.id}}).then((posts) => {
+						var userPosts = [];
+						posts.forEach((post) => {
+							userPosts.push(post.message)
+						})
 						var data = {
 							user: user,
-							profile: profileObj
+							profile: profileObj,
+							posts: userPosts
 						}
-
 						res.set('Content-Type', 'text/html');
 						res.send(html_creator(data));	
 					})
+				  })
 				});
 			} else {
 				res.redirect('/');
@@ -106,6 +111,17 @@ module.exports = (app, passport) => {
 			userID: req.body.userID
 		}).then((profile) => {
 			res.json(profile)
+		}).catch((err) => {
+			res.json(err)
+		})
+	});
+
+	app.post('/api/create-post', function(req, res){
+		models.Post.create({
+			message: req.body.message,
+			userID: req.body.userID
+		}).then((post) => {
+			res.json(post)
 		}).catch((err) => {
 			res.json(err)
 		})
