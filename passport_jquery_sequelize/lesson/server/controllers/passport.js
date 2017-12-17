@@ -22,9 +22,9 @@ module.exports = function(passport) {
 		process.nextTick(function(){
 			models.User.findOne({where: {username: username}}).then(function(user){
 				if(!user)
-					return done(null, false, req.flash('loginMessage', 'No User found'));
+					return done(null, false, {message: 'no user'});
 		        if (!bcrypt.compareSync(password, user.get('password_hash'))){
-		          return done(null, false, req.flash('incorrectPassword','incorrect password'));
+		          return done(null, false, {message: 'incorrect password'});
 		        }
 				return done(null, user);
 			});

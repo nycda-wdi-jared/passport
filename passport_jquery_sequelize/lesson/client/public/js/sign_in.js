@@ -24,6 +24,7 @@ $(document).ready(function(){
 			data: JSON.stringify(signInObj),
 			contentType: 'application/json'
 		}).then(function(res){
+			console.log(res)
 			if(!res.success){
 				if(res.info.message === "incorrect password"){
 					alert("Incorrect Password for username")

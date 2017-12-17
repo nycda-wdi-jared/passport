@@ -70,7 +70,7 @@ module.exports = (app, passport) => {
 		if(req.user){
 			if(req.user.id == req.params.id){
 				models.User.findOne({where: {id: req.params.id}}).then((user) => {
-					user.getProfile().then((profile) => {
+					models.Profile.findOne({where:{user_id: req.params.id}}).then((profile) => {
 						var profileObj = {};
 						profileObj.id = profile.id;
 						profileObj.fav_veggie = profile.fav_veggie;
@@ -83,7 +83,7 @@ module.exports = (app, passport) => {
 
 						res.set('Content-Type', 'text/html');
 						res.send(html_creator(data));	
-					});
+					})
 				});
 			} else {
 				res.redirect('/');
@@ -103,7 +103,7 @@ module.exports = (app, passport) => {
 		models.Profile.create({
 			fav_veggie: req.body.fav_veggie,
 			fav_fruit: req.body.fav_fruit,
-			UserId: req.body.UserId
+			userID: req.body.userID
 		}).then((profile) => {
 			res.json(profile)
 		});
