@@ -24,6 +24,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.text());
 app.use(bodyParser.json());
 
+//middleware that is used to make passport work, as well as work with sequelize
+//along with the models.sequelize.sync(), this automatically creates a Sessions table,
+//which stores sessions of people who are logged in
 app.use(cookieParser())
 app.use(session({
 	secret: 'lesson',
@@ -39,6 +42,11 @@ app.use(flash());
 
 app.use(express.static('./client'));
 
+/*
+	We usually use app.use(routes), but look at the difference between our usual
+	routes.js and the routes.js here. We are using module.exports instead of the express.Router()
+	As you can tell, works practically the same
+*/
 require('./controllers/passport.js')(passport);
 require('./controllers/routes.js')(app, passport);
 

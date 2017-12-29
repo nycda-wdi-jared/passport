@@ -1,3 +1,8 @@
+# Passport Sequelize Lesson
+
+* Passport App using jQuery, node.js, express.js, postgres, and sequelize
+* In the server.js, look how the passport.js and routes.js is being imported and app.used
+
 # Postgres Sequelize Passport Boilerplate + Heroku Push
 
 <h2>Heroku</h2>

@@ -3,6 +3,11 @@ var models = require('../models');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
+/*
+	Built in passport functions used to make passport work with authentication
+	Look for where it being used in the server.js file
+	Look at how the parameter is used as a placeholder here and then actually used in the server.js file
+*/
 module.exports = function(passport) {
 
 	passport.serializeUser(function(user,done){
