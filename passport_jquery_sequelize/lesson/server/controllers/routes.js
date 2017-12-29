@@ -1,8 +1,5 @@
 var path = require('path');
 
-var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcrypt-nodejs');
-
 var models = require('../models');
 
 var html_creator = require('../helpers/html_creator.js');
