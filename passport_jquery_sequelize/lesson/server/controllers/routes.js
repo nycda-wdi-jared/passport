@@ -74,6 +74,13 @@ module.exports = (app, passport) => {
 		res.sendFile(path.join(__dirname, '../../client/public/html/sign_in.html'));
 	});
 
+	/*
+		Look for this route on the client side
+		I am merely just checking to see if the user is logged in
+		and then making a decision from there
+
+		if(req.user) means "if req.user is not undefined"
+	*/
 	app.get('/api/signed-in', (req,res) => {
 		if(req.user){
 			res.json({message: 'signed-in', user_id: req.user.id});
