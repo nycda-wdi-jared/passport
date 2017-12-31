@@ -23,10 +23,12 @@ var html_creator = require('../helpers/html_creator.js');
 //this is all of the behind the scenes middleware the passport module uses to authenticate a user
 
 passport.serializeUser(function(user,done){
+	//console.log(user)
 	done(null, user);
 });
 
 passport.deserializeUser(function(obj,done){
+	//console.log(obj)
 	done(null, obj);
 });
 
@@ -81,12 +83,26 @@ function(req, username, password, done){
 }));
 /* ------------------------------------------------ */
 
+/*
+	Look for this route on the client side
+	I am merely just checking to see if the user is logged in
+	and then making a decision from there
+
+	if(req.user) means "if req.user is not undefined"
+*/
 router.get('/api/sign-up', function(req,res){
 	if(req.user){
 		res.json({message: 'signed-in', user_id: req.user.id});
 	}
 });
 
+/*
+	Look for this route on the client side
+	I am merely just checking to see if the user is logged in
+	and then making a decision from there
+
+	if(req.user) means "if req.user is not undefined"
+*/
 router.get('/api/sign-in', function(req,res){
 	if(req.user){
 		res.json({message: 'signed-in', user_id: req.user.id});
