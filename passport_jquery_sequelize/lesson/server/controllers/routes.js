@@ -31,6 +31,7 @@ module.exports = (app, passport) => {
 	//this is how passport works. Look at the flow of things
 	app.post('/api/sign-up', function(req,res,next){
 		passport.authenticate('local-signup', function(err, user, info){
+			console.log(user)
 			if (err) {
 				return next(err);
 			} else {
@@ -48,7 +49,7 @@ module.exports = (app, passport) => {
 		    }
 		    if (!user) {
 		    	//if user is undefined (password incorrect or user doesnt exist), then send this info to the client
-		    	return res.json({ success : false, message : 'authentication failed', info: info });
+		    	return res.status(401).json({ success : false, message : 'authentication failed', info: info });
 		    }
 		    //adds the user to the req as req.user if username and password match
 		    //also adds the session to the session table in the database
@@ -90,6 +91,7 @@ module.exports = (app, passport) => {
 	app.get('/profile/:id', (req,res) => {
 		//if the login went through, it creates this req.user object able to be used throughout
 		//all of your express routes. This is where you check to see if a user is logged in or not
+		console.log(req.user)
 		if(req.user){
 			//making sure the user id equals to id as part of the route
 			//doing this because i dont want users visiting other users pages

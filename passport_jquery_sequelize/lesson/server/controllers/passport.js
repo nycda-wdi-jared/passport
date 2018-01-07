@@ -11,10 +11,14 @@ var bcrypt = require('bcrypt-nodejs');
 module.exports = function(passport) {
 
 	passport.serializeUser(function(user,done){
-		done(null, user);
+		console.log("--serializeUser--");
+		console.log(user)
+		done(null, {id: user.id, username: user.username});
 	});
 
 	passport.deserializeUser(function(obj,done){
+		console.log("--deserializeUser--");
+		console.log(obj)
 		done(null, obj);
 	});
 

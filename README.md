@@ -12,3 +12,5 @@ In these lessons:
 * Make sure to create a user and a profile for that user.
 * You can use the ui for the user
 * Use postman to create a profile
+
+Passport Flow: http://toon.io/understanding-passportjs-authentication-flow/
