@@ -1,8 +1,8 @@
 var pg = require('pg');
 
 var dbUrl = {
-	user: process.argv.POSTGRES_USER,
-	password: process.argv.POSTGRES_PASSWORD,
+	user: process.env.POSTGRES_USER,
+	password: process.env.POSTGRES_PASSWORD,
 	database: 'pg_pass',
 	host: 'localhost',
 	port: 5432
